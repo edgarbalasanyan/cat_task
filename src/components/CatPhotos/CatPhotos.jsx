@@ -3,7 +3,7 @@ import "./CatPhotos.css"
 
 function CatPhoto({ selectedButtonId}) {
   const [photos, setPhotos] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(2);
 
   useEffect(() => {
     const fetchData = async () => {
