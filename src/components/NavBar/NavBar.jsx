@@ -1,15 +1,28 @@
 import React from 'react';
 import "./NavBar.css"
 
-function Navbar({ handleButtonClick }) {
-  return (
-    <div className="navbar">
-      <button onClick={() => handleButtonClick(1)} className="category" id="1">With hat</button>
-      <button onClick={() => handleButtonClick(2)} className="category" id="2">In universe</button>
-      <button onClick={() => handleButtonClick(3)} className="category" id="3">In action</button>
-      <button onClick={() => handleButtonClick(4)} className="category" id="4">With sunglasses</button>
-    </div >
-  );
-}
+const categories = [
+    { id: 1, name: "With hat" },
+    { id: 2, name: "In universe" },
+    { id: 3, name: "In action" },
+    { id: 4, name: "With sunglasses" }
+];
 
+function Navbar({ handleButtonClick, activeCategoryId  }) {
+    console.log(handleButtonClick, 'handleButtonClick')
+    return (
+        <div className="navbar">
+            {categories.map(category => (
+                <button
+                    key={category.id}
+                    onClick={() => handleButtonClick(category.id)}
+                    className={`category ${category.id === activeCategoryId ? 'active' : ''}`}
+                    id={category.id}
+                >
+                    {category.name}
+                </button>
+            ))}
+        </div>
+    );
+}
 export default Navbar;

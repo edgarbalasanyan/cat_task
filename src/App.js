@@ -4,16 +4,15 @@ import CatPhotos from './components/CatPhotos/CatPhotos';
 import "./App.css"
 
 function App() {
-  const [selectedButtonId, setSelectedButtonId] = useState(null);
-
-  const handleButtonClick = (buttonId) => {
-    setSelectedButtonId(buttonId);
-  };
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const handleButtonClick = (categoryId) => {
+        setSelectedCategory(categoryId);
+    };
 
   return (
     <div className="App">
-      <NavBar handleButtonClick={handleButtonClick} />
-      <CatPhotos selectedButtonId={selectedButtonId}/>
+      <NavBar handleButtonClick={handleButtonClick} activeCategoryId={selectedCategory} />
+      <CatPhotos selectedButtonId={selectedCategory}/>
     </div>
   );
 }

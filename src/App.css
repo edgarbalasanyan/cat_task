@@ -1,20 +1,19 @@
 .App {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .more{
-    width:120px;
-    align-self: center;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .more:hover {
-    background-color: #777;
-  }
-  
+  width:120px;
+  align-self: center;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.more:hover {
+  background-color: #777;
+}

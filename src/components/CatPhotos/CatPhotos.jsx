@@ -3,33 +3,41 @@ import "./CatPhotos.css"
 
 function CatPhoto({ selectedButtonId}) {
   const [photos, setPhotos] = useState([]);
-  const [limit, setLimit] = useState(2);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPhotos([])
+  }, [selectedButtonId]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = selectedButtonId? await fetch(
-                        `https://api.thecatapi.com/v1/images/search?limit=${limit}&page=1&category_ids=${selectedButtonId}`)
-                        :await fetch(
-                            `https://api.thecatapi.com/v1/images/search?limit=${limit}`);
+        const response = selectedButtonId
+            ? await fetch(
+                `https://api.thecatapi.com/v1/images/search?limit=10&page=${page}&category_ids=${selectedButtonId}`)
+            : await fetch(
+                `https://api.thecatapi.com/v1/images/search?limit=10`);
         const data = await response.json();
-        setPhotos(data);
+        setPhotos(prevPhotos => [...prevPhotos, ...data]);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [selectedButtonId, limit]);
+  }, [selectedButtonId, page]);
+
 
   return (
     <div className='cat-photo-component-container'>
         <div className="cat-photos-container ">
         {photos.map((photo) => (
-        <img key={photo.id} src={photo.url} alt={photo.title} className='cat-photo'/>
+            <div key={photo.id}>
+              <img src={photo.url} alt={photo.title} className='cat-photo'/>
+            </div>
         ))}
         </div>
-        <button className='more' onClick={()=>{setLimit(limit+10)}}>More</button>
+        <button className='more' onClick={()=>{setPage(page+1)}}>More</button>
     </div>);
 }
 
